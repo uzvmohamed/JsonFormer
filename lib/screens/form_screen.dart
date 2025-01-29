@@ -111,55 +111,58 @@ class FormPage extends ConsumerWidget {
               ),
               const SizedBox(height: 6),
               if (fields != null)
-                ListView(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: fields.map((i) {
-                      var value = ref.watch(deopDownProvider);
-                      if (i.widget == 'dropdown' && i.visible == null) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: DropdownButtonFormField(
-                            decoration: InputDecoration(
-                              labelText: 'choose type',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
+                SizedBox(
+                  width: 400,
+                  child: ListView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: fields.map((i) {
+                        var value = ref.watch(deopDownProvider);
+                        if (i.widget == 'dropdown' && i.visible == null) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButtonFormField(
+                              decoration: InputDecoration(
+                                labelText: i.fieldName,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                               ),
+                              items: i.validValues!
+                                  .map((e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(e),
+                                      ))
+                                  .toList(),
+                              onChanged: (v) {
+                                ref
+                                    .read(deopDownProvider.notifier)
+                                    .update((state) => state = v ?? '');
+                              },
                             ),
-                            items: i.validValues!
-                                .map((e) => DropdownMenuItem(
-                                      value: e,
-                                      child: Text(e),
-                                    ))
-                                .toList(),
-                            onChanged: (v) {
-                              ref
-                                  .read(deopDownProvider.notifier)
-                                  .update((state) => state = v ?? '');
-                            },
-                          ),
-                        );
-                      } else if (i.visible!
-                                  .split('==')[1]
-                                  .replaceAll("'", '') ==
-                              value &&
-                          i.widget == 'textfield') {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              labelText: i.fieldName,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
+                          );
+                        } else if (i.visible!
+                                    .split('==')[1]
+                                    .replaceAll("'", '') ==
+                                value &&
+                            i.widget == 'textfield') {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                labelText: i.fieldName,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                               ),
+                              controller: TextEditingController(),
                             ),
-                            controller: TextEditingController(),
-                          ),
-                        );
-                      } else {
-                        return const SizedBox();
-                      }
-                    }).toList()),
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      }).toList()),
+                ),
             ],
           ),
         ),
