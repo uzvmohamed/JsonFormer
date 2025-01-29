@@ -1,16 +1,7 @@
 # jsonformer
 
-A new Flutter project.
+A Flutter App that builds Forms based on Json schema.
 
-## Getting Started
+![Screenshot 2025-01-29 064017](https://github.com/user-attachments/assets/8075d66d-748d-4acc-b317-b017c5c39951)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
