@@ -117,7 +117,7 @@ class FormPage extends ConsumerWidget {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       children: fields.map((i) {
-                        var value = ref.watch(deopDownProvider);
+                        var value = ref.watch(typeProvider);
                         if (i.widget == 'dropdown' && i.visible == null) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -136,7 +136,7 @@ class FormPage extends ConsumerWidget {
                                   .toList(),
                               onChanged: (v) {
                                 ref
-                                    .read(deopDownProvider.notifier)
+                                    .read(typeProvider.notifier)
                                     .update((state) => state = v ?? '');
                               },
                             ),

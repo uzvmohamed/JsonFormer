@@ -5,7 +5,7 @@ import 'package:jsonformer/screens/form_screen.dart';
 // Riverpod providers for state management
 final jsonProvider = StateProvider<String>((ref) => '''{"fields":[]}''');
 
-final deopDownProvider = StateProvider<String>((ref) => 'none');
+final typeProvider = StateProvider<String>((ref) => 'none');
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
